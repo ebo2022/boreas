@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "id": "examplemod",
+  "id": "boreas",
   "version": "${version}",
-  "name": "Example Mod",
+  "name": "Boreas",
   "description": "This is an example description! Tell everyone what your mod is about!",
   "authors": [
     "Me!"
@@ -20,12 +20,11 @@
     ]
   },
   "mixins": [
-    "examplemod.mixins.json",
+    "boreas.mixins.json",
     "examplemod-common.mixins.json"
   ],
   "depends": {
     "fabric": "*",
-    "minecraft": ">=1.19.2",
-    "architectury": ">=6.2.43"
+    "minecraft": ">=1.19.2"
   }
 }

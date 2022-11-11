@@ -1,4 +1,4 @@
-package dev.atlas.registries;
+package com.teamtaigamodding.boreas.registries;
 
 import com.mojang.serialization.Codec;
 import org.jetbrains.annotations.Nullable;

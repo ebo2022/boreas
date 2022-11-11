@@ -1,7 +1,7 @@
-package dev.atlas.registries.forge;
+package com.teamtaigamodding.boreas.registries.forge;
 
 import com.mojang.serialization.Codec;
-import dev.atlas.registries.CoreRegistry;
+import com.teamtaigamodding.boreas.registries.CoreRegistry;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;

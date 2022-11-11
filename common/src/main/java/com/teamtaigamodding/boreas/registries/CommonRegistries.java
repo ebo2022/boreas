@@ -1,4 +1,4 @@
-package dev.atlas.registries;
+package com.teamtaigamodding.boreas.registries;
 
 public final class CommonRegistries {
 

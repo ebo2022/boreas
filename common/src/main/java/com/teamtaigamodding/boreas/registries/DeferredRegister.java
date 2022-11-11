@@ -1,7 +1,7 @@
-package dev.atlas.registries;
+package com.teamtaigamodding.boreas.registries;
 
+import com.teamtaigamodding.boreas.platform.Platform;
 import dev.architectury.injectables.annotations.ExpectPlatform;
-import dev.atlas.platform.Platform;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;

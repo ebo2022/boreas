@@ -1,7 +1,7 @@
-package dev.atlas.registries.forge;
+package com.teamtaigamodding.boreas.registries.forge;
 
-import dev.atlas.registries.CoreRegistry;
-import dev.atlas.registries.RegistryValue;
+import com.teamtaigamodding.boreas.registries.RegistryValue;
+import com.teamtaigamodding.boreas.registries.CoreRegistry;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;

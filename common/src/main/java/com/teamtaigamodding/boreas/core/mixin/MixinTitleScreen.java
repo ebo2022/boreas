@@ -1,4 +1,4 @@
-package dev.atlas.core.mixin;
+package com.teamtaigamodding.boreas.core.mixin;
 
 import net.minecraft.client.gui.screens.TitleScreen;
 import org.spongepowered.asm.mixin.Mixin;

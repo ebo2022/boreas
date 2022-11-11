@@ -1,4 +1,4 @@
-package dev.atlas.platform;
+package com.teamtaigamodding.boreas.platform;
 
 public final class Platform {
 

@@ -1,7 +1,7 @@
-package dev.atlas.registries.forge;
+package com.teamtaigamodding.boreas.registries.forge;
 
 import com.mojang.serialization.Codec;
-import dev.atlas.registries.RegistryBuilder;
+import com.teamtaigamodding.boreas.registries.RegistryBuilder;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Nullable;
 

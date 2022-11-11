@@ -1,17 +1,15 @@
-package dev.atlas.registries.forge;
+package com.teamtaigamodding.boreas.registries.forge;
 
-import dev.atlas.registries.CoreRegistry;
-import dev.atlas.registries.DeferredRegister;
-import dev.atlas.registries.RegistryBuilder;
-import dev.atlas.registries.RegistryValue;
+import com.teamtaigamodding.boreas.registries.RegistryBuilder;
+import com.teamtaigamodding.boreas.registries.RegistryValue;
+import com.teamtaigamodding.boreas.registries.CoreRegistry;
+import com.teamtaigamodding.boreas.registries.DeferredRegister;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.registries.IForgeRegistry;
 import org.jetbrains.annotations.ApiStatus;
 
 import java.util.Collection;
-import java.util.Map;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;

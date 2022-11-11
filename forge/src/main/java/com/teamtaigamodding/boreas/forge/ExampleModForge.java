@@ -1,4 +1,4 @@
-package dev.atlas.forge;
+package com.teamtaigamodding.boreas.forge;
 
 import dev.architectury.platform.forge.EventBuses;
 import net.minecraftforge.fml.common.Mod;

@@ -22,6 +22,7 @@ public interface RegistryAccessMixin {
     private static void addDataRegistries(CallbackInfoReturnable<ImmutableMap<ResourceKey<? extends Registry<?>>, RegistryAccess.RegistryData<?>>> cir, ImmutableMap.Builder<ResourceKey<? extends Registry<?>>, RegistryAccess.RegistryData<?>> builder) {
         // Hacky method to load classes in early. This allows for for data pack registry data to be present earlier during runtime without the need of an entrypoint
         ServiceLoader.load(ModRegistryHolder.class).forEach(clz -> clz.getClass().getName());
-        builder.putAll(DataPackRegistryHooks.getCustomRegistries());
+
+        builder.putAll(DataPackRegistryHooks.registryData());
     }
 }

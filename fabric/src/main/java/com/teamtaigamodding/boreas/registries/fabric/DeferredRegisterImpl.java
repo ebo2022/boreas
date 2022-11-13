@@ -1,9 +1,12 @@
 package com.teamtaigamodding.boreas.registries.fabric;
 
+import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.Codec;
+import com.teamtaigamodding.boreas.platform.ModInstance;
 import com.teamtaigamodding.boreas.registries.*;
 import net.minecraft.core.Registry;
 import net.minecraft.core.RegistryAccess;
+import net.minecraft.data.BuiltinRegistries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.Nullable;
@@ -52,10 +55,8 @@ public class DeferredRegisterImpl<T> extends DeferredRegister<T> {
     public Supplier<CoreRegistry<T>> makeRegistry(Consumer<RegistryBuilder<T>> builder) {
         RegistryBuilderImpl<T> implBuilder = new RegistryBuilderImpl<>(this.getRegistryName());
         builder.accept(implBuilder);
-        if (implBuilder.getDataCodecs() != null)
-            DataPackRegistryHooks.register(new RegistryAccess.RegistryData<>(this.registryKey, implBuilder.getDataCodecs().getFirst(), implBuilder.getDataCodecs().getSecond()));
         this.factory = implBuilder;
-        return () -> RegistryManager.INSTANCE.getRegistry(this.registryKey);
+        return new RegistryHolder<>(this.registryKey);
     }
 
     @Override
@@ -63,6 +64,42 @@ public class DeferredRegisterImpl<T> extends DeferredRegister<T> {
         return this.entriesView;
     }
 
-    public record DataPackRegistryData<T>(ResourceKey<? extends Registry<T>> key, Codec<T> codec, @Nullable Codec<T> networkCodec) {
+    @Override
+    @SuppressWarnings("unchecked")
+    protected void onRegister(ModInstance modInstance) {
+        Registry<T> registry = (Registry<T>) Registry.REGISTRY.get(this.getRegistryName());
+        if (registry == null) registry = (Registry<T>) BuiltinRegistries.REGISTRY.get(this.getRegistryName());
+        if (this.factory != null) {
+            registry = this.factory.assemble();
+            Pair<Codec<T>, @Nullable Codec<T>> codecs = this.factory.getDataCodecs();
+            if (codecs != null)
+                DataPackRegistryHooks.register(new RegistryAccess.RegistryData<>(this.registryKey, codecs.getFirst(), codecs.getSecond()), registry);
+        }
+        if (registry != null) {
+            Registry<T> finalRegistry = registry;
+            this.entries.forEach((key, value) -> {
+                Registry.register(finalRegistry, key.getId(), value.get());
+                key.updateReference(finalRegistry);
+            });
+        } else {
+            throw new IllegalArgumentException("Invalid registry:" + this.getRegistryName());
+        }
+    }
+
+    private static class RegistryHolder<T> implements Supplier<CoreRegistry<T>> {
+        private final ResourceKey<? extends Registry<T>> registryKey;
+        private CoreRegistry<T> registry = null;
+
+        private RegistryHolder(ResourceKey<? extends Registry<T>> registryKey) {
+            this.registryKey = registryKey;
+        }
+
+        @Override
+        public CoreRegistry<T> get() {
+            // Keep looking up the registry until it's not null
+            if (this.registry == null)
+                this.registry = RegistryManager.INSTANCE.getRegistry(this.registryKey);
+            return this.registry;
+        }
     }
 }

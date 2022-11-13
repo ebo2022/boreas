@@ -1,13 +1,15 @@
 package com.teamtaigamodding.boreas.platform;
 
 import dev.architectury.injectables.annotations.ExpectPlatform;
-import dev.architectury.injectables.annotations.PlatformOnly;
 import org.jetbrains.annotations.ApiStatus;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
+/**
+ * An abstracted mod instance to streamline mod initialization.
+ */
 public abstract class ModInstance {
 
     private final String modId;
@@ -19,7 +21,6 @@ public abstract class ModInstance {
     public static Builder builder(String modId) {
         return new Builder(modId);
     }
-
 
     public String getModId() {
         return modId;

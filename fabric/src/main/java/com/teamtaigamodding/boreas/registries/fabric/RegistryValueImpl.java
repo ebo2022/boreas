@@ -17,9 +17,9 @@ public class RegistryValueImpl<T> extends RegistryValue<T> {
     @Nullable
     private final ResourceLocation name;
     @Nullable
-    private ResourceKey<T> key;
+    private final ResourceKey<T> key;
     @Nullable
-    protected T value;
+    private T value;
     @Nullable
     private Holder<T> holder;
 
@@ -65,6 +65,7 @@ public class RegistryValueImpl<T> extends RegistryValue<T> {
     }
 
     @Override
+    @Nullable
     public ResourceKey<T> getKey() {
         return this.key;
     }

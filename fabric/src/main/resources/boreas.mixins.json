@@ -5,6 +5,7 @@
   "client": [
   ],
   "mixins": [
+    "RegistryAccessMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -20,15 +20,15 @@ public class RegistryValueImpl<T> extends RegistryValue<T> {
         this.parent = parent;
     }
 
-    public static <T> RegistryValue<T> create(CoreRegistry<T> registry, ResourceLocation name) {
+    public static <T, R extends T> RegistryValue<R> create(CoreRegistry<T> registry, ResourceLocation name) {
         return new RegistryValueImpl<>(RegistryObject.create(name, ((CoreRegistryImpl<T>) registry).getRegistry()));
     }
 
-    public static <T> RegistryValue<T> create(ResourceKey<? extends Registry<T>> registryKey, ResourceLocation name, String mod) {
+    public static <T, R extends T> RegistryValue<R> create(ResourceKey<? extends Registry<T>> registryKey, ResourceLocation name, String mod) {
         return new RegistryValueImpl<>(RegistryObject.create(name, registryKey, mod));
     }
 
-    public static <T> RegistryValue<T> create(ResourceLocation registryName, ResourceLocation name, String mod) {
+    public static <T, R extends T> RegistryValue<R> create(ResourceLocation registryName, ResourceLocation name, String mod) {
         return new RegistryValueImpl<>(RegistryObject.create(name, registryName, mod));
     }
 
@@ -43,6 +43,11 @@ public class RegistryValueImpl<T> extends RegistryValue<T> {
     }
 
     @Override
+    public ResourceKey<T> getKey() {
+        return this.parent.getKey();
+    }
+
+    @Override
     public Optional<Holder<T>> getHolder() {
         return this.parent.getHolder();
     }
@@ -51,4 +56,6 @@ public class RegistryValueImpl<T> extends RegistryValue<T> {
     public T get() {
         return this.parent.get();
     }
+
+
 }

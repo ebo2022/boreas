@@ -16,12 +16,12 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "dev.examplemod.fabric.ExampleModFabric"
+      "com.teamtaigamodding.boreas.core.fabric.BoreasFabric"
     ]
   },
   "mixins": [
     "boreas.mixins.json",
-    "examplemod-common.mixins.json"
+    "boreas-common.mixins.json"
   ],
   "depends": {
     "fabric": "*",

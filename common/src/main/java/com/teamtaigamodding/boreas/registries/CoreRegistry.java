@@ -18,7 +18,7 @@ import java.util.stream.StreamSupport;
  * A "read-only" wrapper for platform-specific registries.
  *
  * @param <T> The registry type
- * @see CommonRegistries
+ * @see CoreRegistries
  * @see DeferredRegister
  */
 public interface CoreRegistry<T> extends Iterable<T>, Keyable {
@@ -59,6 +59,4 @@ public interface CoreRegistry<T> extends Iterable<T>, Keyable {
     default <T1> Stream<T1> keys(DynamicOps<T1> ops) {
         return this.keySet().stream().map(rl -> ops.createString(rl.toString()));
     }
-
-
 }
